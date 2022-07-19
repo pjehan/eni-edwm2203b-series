@@ -18,4 +18,15 @@ class MainController extends AbstractController
             'controller_name' => 'Pierre Jehan',
         ]);
     }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact()
+    {
+        $cities = ['Paris', 'Rennes', 'Toulouse', 'Brest'];
+        return $this->render('main/contact.html.twig', [
+            'villes' => $cities
+        ]);
+    }
 }
