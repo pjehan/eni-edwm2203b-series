@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}
+    Contact
+{% endblock %}
+
+{% block body %}
+    <h1>Contact</h1>
+
+    <ul>
+        {% for ville in villes %}
+            <li>{{ ville }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
