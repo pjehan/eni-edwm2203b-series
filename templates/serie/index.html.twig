@@ -5,13 +5,18 @@
 {% block body %}
     <h1>Liste des séries</h1>
 
-    <section>
+    <section class="row g-3">
         {% for serie in series %}
-            <article>
-                <h2>{{ serie.name }}</h2>
-                <a href="{{ path('serie_show', {'id': serie.id}) }}" class="btn btn-primary">
-                    Voir plus
-                </a>
+            <article class="col-md-3">
+                <div class="card">
+                    <img src="{{ asset('uploads/posters/series/' ~ serie.poster) }}" class="card-img-top" alt="{{ serie.name }}">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ serie.name }}</h2>
+                        <a href="{{ path('serie_show', {'id': serie.id}) }}" class="btn btn-primary">
+                            Voir plus
+                        </a>
+                    </div>
+                </div>
             </article>
         {% endfor %}
     </section>

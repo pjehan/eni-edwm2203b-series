@@ -4,5 +4,24 @@
 
 {% block body %}
     <h1>{{ serie.name }}</h1>
+    <ul class="d-flex list-unstyled">
+        <li>
+            <div class="badge bg-primary mx-1">Note : {{ serie.vote }}</div>
+        </li>
+        <li>
+            <div class="badge bg-primary mx-1">Popularité : {{ serie.popularity }}</div>
+        </li>
+        <li>
+            <div class="badge bg-info mx-1">Status : {{ serie.status }}</div>
+        </li>
+    </ul>
+    <ul class="d-flex list-unstyled">
+        {% for genre in serie.genres|split('/') %}
+            <li>
+                <div class="badge bg-dark mx-1">{{ genre }}</div>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>{{ serie.overview }}</p>
 {% endblock %}
 
