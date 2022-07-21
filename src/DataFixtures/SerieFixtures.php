@@ -2,25 +2,28 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Serie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Finder\Finder;
 
 class SerieFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $gameOfThrone = new Serie();
-        $gameOfThrone->setName("Game Of Thrones");
-        $gameOfThrone->setOverview("Game of Thrones is an American fantasy drama television series created by David Benioff and D. B. Weiss for HBO.");
-        $gameOfThrone->setStatus("En cours");
-        $manager->persist($gameOfThrone);
+        $finder = new Finder();
+        $finder->in(__DIR__ . '/sql');
+        $finder->name('*.sql');
+        $finder->files();
+        $finder->sortByName();
 
-        $breakingBad = new Serie();
-        $breakingBad->setName("Breaking Bad");
-        $breakingBad->setStatus("Terminé");
-        $manager->persist($breakingBad);
+        foreach ($finder as $file) {
+            $content = $file->getContents();
 
-        $manager->flush();
+            /* @var EntityManagerInterface $manager */
+            $manager->getConnection()->executeQuery($content);
+
+            $manager->flush();
+        }
     }
 }
