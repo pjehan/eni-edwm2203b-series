@@ -21,15 +21,22 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {% set route_name = app.request.get('_route') %}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ path('homepage') }}">Accueil</a>
+                            <a class="nav-link {% if route_name == 'homepage' %}active{% endif %}" href="{{ path('homepage') }}">
+                                Accueil
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('serie_index') }}">Mes séries</a>
+                            <a class="nav-link {% if route_name starts with 'serie' %}active{% endif %}" href="{{ path('serie_index') }}">
+                                Mes séries
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                            <a class="nav-link {% if route_name == 'contact' %}active{% endif %}" href="{{ path('contact') }}">
+                                Contact
+                            </a>
                         </li>
                     </ul>
                 </div>
