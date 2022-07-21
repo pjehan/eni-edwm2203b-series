@@ -3,6 +3,16 @@
 {% block title %}Liste des séries{% endblock %}
 
 {% block body %}
-    <h1>Index</h1>
-    {# TODO: Afficher la liste des séries #}
+    <h1>Liste des séries</h1>
+
+    <section>
+        {% for serie in series %}
+            <article>
+                <h2>{{ serie.name }}</h2>
+                <a href="{{ path('serie_show', {'id': serie.id}) }}" class="btn btn-primary">
+                    Voir plus
+                </a>
+            </article>
+        {% endfor %}
+    </section>
 {% endblock %}
