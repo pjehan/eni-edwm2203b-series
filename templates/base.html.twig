@@ -29,6 +29,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {% if route_name starts with 'genre' %}active{% endif %}" href="{{ path('genre_index') }}">
+                                Les genres
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {% if route_name starts with 'serie' %}active{% endif %}" href="{{ path('serie_index') }}">
                                 Mes séries
                             </a>
