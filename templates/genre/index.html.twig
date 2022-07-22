@@ -1,18 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des genres{% endblock %}
+{% block title %}Genre index{% endblock %}
 
 {% block body %}
+    <h1>Genre index</h1>
 
-    <a href="{{ path('genre_create') }}" class="btn btn-primary">
-        Ajouter un genre
-    </a>
-
-    <ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for genre in genres %}
-            <li>
-                {{ genre.name }}
-            </li>
+            <tr>
+                <td>{{ genre.id }}</td>
+                <td>{{ genre.name }}</td>
+                <td>
+                    <a href="{{ path('app_genre_show', {'id': genre.id}) }}">show</a>
+                    <a href="{{ path('app_genre_edit', {'id': genre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_genre_new') }}">Create new</a>
 {% endblock %}
